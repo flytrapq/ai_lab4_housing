@@ -27,7 +27,7 @@ scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
 # Split the scaled data into training and testing sets
-X_train_scaled, X_test_scaled, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+X_train_scaled, X_test_scaled, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=98)
 
 # Handle missing values
 imputer = SimpleImputer(strategy='mean')
@@ -44,7 +44,7 @@ model_rnn = Sequential([
     Dense(units=1)
 ])
 model_rnn.compile(optimizer=Adam(), loss='mean_squared_error')
-history = model_rnn.fit(X_train_imputed_reshaped, y_train, epochs=100, batch_size=32, validation_split=0.2)
+history = model_rnn.fit(X_train_imputed_reshaped, y_train, epochs=20, batch_size=32, validation_split=0.2)
 
 # Evaluate the RNN model
 y_pred_rnn = model_rnn.predict(X_test_imputed_reshaped)
